@@ -14,3 +14,96 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.form {
+  /* Horizontal centering */
+  margin: 0 auto;
+  /* Make the div only the width of the content inside it- not the whole page */
+  width: fit-content;
+
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.form-input {
+  /* Stacking the inner items */
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-button {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.text-area {
+  margin-bottom: 1rem;
+  height: 5rem;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.results-strip {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.results-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.results-item {
+  min-width: 20vw;
+  padding: 1rem;
+}
+
+body {
+  background-color: black;
+  color: antiquewhite;
+}
+
+.headline {
+  font-family: "Six Caps", sans-serif;
+}
+
+h1.headline {
+  font-size: 6rem;
+}
+
+p.headline {
+  font-size: 2rem;
+}
+
+.submit-button {
+  font-size: 1.25rem;
+  padding: 0.75rem 2rem;
+  background-color: #d59100;
+  color: black;
+  border-radius: 999px;
+  border: 2px solid #d59100;
+  width: fit-content;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.submit-button:hover {
+  color: #d59100;
+  background-color: black;
+}
+
+.bi-play-circle-fill {
+  margin-left: 1rem;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
