@@ -110,6 +110,7 @@ export default function Home() {
         <div className="results-strip">
           <button
             className="scroll-left"
+            aria-label="Newer Results"
             onClick={() => {
               document.querySelector(".results-strip").scrollLeft = 0;
             }}
@@ -118,6 +119,7 @@ export default function Home() {
           </button>
           <button
             className="scroll-right"
+            aria-label="Older Results"
             onClick={() => {
               document
                 .querySelector(".results-strip")
