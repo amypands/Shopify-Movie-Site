@@ -50,6 +50,10 @@ a {
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  position: relative;
+  scroll-behavior: smooth;
+  border-top: 10px dashed white;
+  border-bottom: 10px dashed white;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -60,6 +64,18 @@ a {
 .results-item {
   min-width: 20vw;
   padding: 1rem;
+  background-color: white;
+  color: black;
+  border-top: 15px solid black;
+  border-bottom: 15px solid black;
+  border-right: 10px solid black;
+}
+
+@media screen and (max-width:767px) and (orientation:portrait) {
+  .results-item {
+    min-width: 80vw;
+    overflow: scroll;
+  }
 }
 
 body {
@@ -67,7 +83,7 @@ body {
   color: antiquewhite;
 }
 
-.headline {
+h1 {
   font-family: "Six Caps", sans-serif;
 }
 
@@ -76,7 +92,8 @@ h1.headline {
 }
 
 p.headline {
-  font-size: 2rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .submit-button {
@@ -106,4 +123,35 @@ p.headline {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.form-container {
+  background-image: url("/movie-background.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-grow: 1;
+  /*vertically centering:*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scroll-left {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 95%;
+  border-radius: 1000px; /*to make a circle*/
+  background-color: #d59100;
+}
+
+.scroll-right {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 95%;
+  right: 0;
+  border-radius: 1000px;
+  background-color: #d59100;
 }

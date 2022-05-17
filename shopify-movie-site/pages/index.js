@@ -38,73 +38,94 @@ export default function Home() {
       </Head>
 
       <main className="main">
-        <div className="form">
-          <h1  className="headline">PITCH BOT</h1>
-          <p  className="headline">
-            Enter some key words or a sentence about your desired plot and Pitch
-            Bot will create a movie pitch just for you.
-          </p>
-          {/**
-           * We don't want the form to refresh on submit so onSubmit we want to prevent the default event with event.preventDefault()
-           */}
-          <form
-            className="form-input"
-            onSubmit={(event) => event.preventDefault()}
-          >
+        <div className="form-container">
+          <div className="form">
+            <h1 className="headline">PITCH BOT</h1>
+            <p className="headline">
+              Enter some key words or a sentence below about your desired plot
+              and Pitch Bot will create a movie pitch just for you.
+            </p>
             {/**
-             * the arrow function inside onChange will run every time we make a change in the textarea, that's what the "event" is.
-             * event.target = the textarea
-             * event.target.value = the text inside the textarea
+             * We don't want the form to refresh on submit so onSubmit we want to prevent the default event with event.preventDefault()
              */}
-            <textarea
-              className="text-area"
-              onChange={(event) => {
-                setSuggestion(event.target.value);
-              }}
-              value={suggestion}
-            />
-            <button
-              className="submit-button"
-              onClick={() => {
-                /**
-                 * in nextjs, when you make an API, the endpoint is literally /api/{YOUR_FILE_NAME}
-                 */
-                axios
-                  .post("/api/movie-pitch", { suggestion: suggestion })
-                  .then((response) => {
-                    // set new results
-                    setResults([
-                      {
-                        suggestion: suggestion,
-                        pilot: response.data.pitch,
-                      },
-                      ...results,
-                    ]);
-
-                    // clear suggestions
-                    setSuggestion("");
-
-                    // save to browser
-                    localStorage.setItem(
-                      "results",
-                      // turn our new results into a string (localstorage only saves strings)
-                      JSON.stringify([
+            <form
+              className="form-input"
+              onSubmit={(event) => event.preventDefault()}
+            >
+              {/**
+               * the arrow function inside onChange will run every time we make a change in the textarea, that's what the "event" is.
+               * event.target = the textarea
+               * event.target.value = the text inside the textarea
+               */}
+              <textarea
+                className="text-area"
+                placeholder="Enter text here!"
+                onChange={(event) => {
+                  setSuggestion(event.target.value);
+                }}
+                value={suggestion}
+              />
+              <button
+                className="submit-button"
+                onClick={() => {
+                  /**
+                   * in nextjs, when you make an API, the endpoint is literally /api/{YOUR_FILE_NAME}
+                   */
+                  axios
+                    .post("/api/movie-pitch", { suggestion: suggestion })
+                    .then((response) => {
+                      // set new results
+                      setResults([
                         {
                           suggestion: suggestion,
                           pilot: response.data.pitch,
                         },
                         ...results,
-                      ])
-                    );
-                  })
-              }}
-            >
-              Submit
-              <i className="bi bi-play-circle-fill"></i>
-            </button>
-          </form>
+                      ]);
+
+                      // clear suggestions
+                      setSuggestion("");
+
+                      // save to browser
+                      localStorage.setItem(
+                        "results",
+                        // turn our new results into a string (localstorage only saves strings)
+                        JSON.stringify([
+                          {
+                            suggestion: suggestion,
+                            pilot: response.data.pitch,
+                          },
+                          ...results,
+                        ])
+                      );
+                    });
+                }}
+              >
+                Submit
+                <i className="bi bi-play-circle-fill"></i>
+              </button>
+            </form>
+          </div>
         </div>
         <div className="results-strip">
+          <button
+            className="scroll-left"
+            onClick={() => {
+              document.querySelector(".results-strip").scrollLeft = 0;
+            }}
+          >
+            <i className="bi bi-arrow-left"></i>
+          </button>
+          <button
+            className="scroll-right"
+            onClick={() => {
+              document
+                .querySelector(".results-strip")
+                .scrollTo(document.querySelector(".results-strip").scrollWidth, 0);
+            }}
+          >
+            <i className="bi bi-arrow-right"></i>
+          </button>
           {
             /**
              * We need to map over our results and return our results-item jsx.
