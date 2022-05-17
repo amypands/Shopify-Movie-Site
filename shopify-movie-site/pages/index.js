@@ -137,7 +137,7 @@ export default function Home() {
              */
             results.map((result) => {
               return (
-                <div className="results-item">
+                <div key={result.suggestion} className="results-item">
                   <p>
                     <strong>Suggestion:</strong> {result.suggestion}
                   </p>
